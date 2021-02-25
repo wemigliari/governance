@@ -1,0 +1,70 @@
+---
+title: ""
+author: ""
+output: html_document
+---
+
+### Figures on Wildfires
+
+#### Migliari, W. (2021)
+
+\
+\
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width=9, fig.height=4.5, fig.align = "center")
+
+library(curl)
+library(rsconnect)
+library(markdown)
+library(rmarkdown)
+library(htmltools)
+library(mime)
+library(knitr)
+library(rsconnect)
+library(prettydoc)
+library(readxl)
+library(leaflet)
+library(leaflet.extras)
+library(sp)
+library(plotly)
+library(DT)
+library(sf)
+library(rgdal)
+library(maps)
+library(tmap)
+library(mapdata)
+library(mapproj)
+library(shiny)
+library(dplyr)
+library(readxl)
+library(tidyverse)
+library(transformr)
+library(geojson)
+library(raster) # union function
+library(bookdown)
+library(xfun)
+
+```
+
+##### Download the following figures on wildfires
+
+\
+
+
+```{r, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+```
+
+<i class="fas fa-file-pdf fa-2x" style="color: steelblue;"></i> <a href="/Users/wemigliari/Documents/R/R_Scripts/governance/bc_emissions1.pdf" target="_blank">BC emissions estimates in 1E9 g BC for the globe, different regions, and different fire types</a> 
+
+<i class="fas fa-file-alt fa-2x" style="color: steelblue;"></i> <a href="/Users/wemigliari/Documents/R/R_Scripts/governance/bc_emissions1.eps" target="_blank">BC emissions estimates in 1E9 g BC for the globe, different regions, and different fire types</a> 
+
+```{r,  echo = FALSE, warning = FALSE, message = FALSE, out.width = "85%", fig.cap = "caption"}
+
+knitr::include_graphics("/Users/wemigliari/Documents/R/R_Scripts/governance/bc_emissions1.eps")
+```
+
+
+
