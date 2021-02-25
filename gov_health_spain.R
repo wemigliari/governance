@@ -3,7 +3,7 @@ library(varhandle)
 library(yarrr)
 library(XLConnect)
 
-mysheets <- loadWorkbook("/Users/wemigliari/Documents/R/tabelas/gov_health_spain.xlsx")
+mysheets <- loadWorkbook("/Users/wemigliari/Documents/R/tabelas/tour_gov_health_spain.xlsx")
 
 nordic_countries = readWorksheet(mysheets, sheet = "Nordic Countries")
 germany = readWorksheet(mysheets, sheet = "Germany")
