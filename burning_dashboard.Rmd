@@ -4,14 +4,17 @@ author: ""
 output: html_document
 ---
 
-### Data on Wildfires
+### Data on Wildfires and Carbon Emissions
 
-#### Migliari, W. (2021)
+#### Migliari, W. (2021).
 
 \
 \
 
-$$x^{-1}$$
+<p> All carbon emissions are in $TgC^{-1}$ per year </p>
+
+\
+\
 
 ```{r, echo = FALSE, message = FALSE, comment = FALSE, warning = FALSE}
 
@@ -65,15 +68,16 @@ fig2 <- plot_ly(data_bf, x = ~year, y = data_bf$BONA_savana, name = "BONA", type
   add_trace(y = data_bf$EQAS...29, name = 'EQAS', color = I("gold"), marker = list(color = "gold"))%>%
   add_trace(y = data_bf$AUST...30, name = 'AUST', color = I("gray"), marker = list(color = "gray"))%>%
   add_trace(y = data_bf$Global...31, name = 'Global', color = I("#186600"), marker = list(color = "#186600"))%>%
-  layout(yaxis = list(title = "Savanna, grassland and shrubland fires C emissions (TgC/year)"),
+  layout(yaxis = list(title = "Carbon Emissions Savanna, grassland and shrubland"),
          xaxis = list(title = ""), showlegend = FALSE)
 
 test1 <- subplot(fig1,fig2, margin = 0.05, nrows = 1, titleX = FALSE,
                 titleY = FALSE)
 
 test1%>%layout(annotations = list(
- list(x = 0.03 , y = 1.05, text = "Annual fire C emissions (TgC/year)", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.88 , y = 1.05, text = "Savanna fires C emissions (TgC/year)", showarrow = F, xref='paper', yref='paper'))
+ list(x = 0.1 , y = 1.05, text = "Annual fire carbon emissions", 
+      showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.9 , y = 1.05, text = "Savanna fire carbon emissions", showarrow = F, xref='paper', yref='paper'))
 )
 
 ```
@@ -101,7 +105,7 @@ fig3 <- plot_ly(data_bf, x = ~year, y = data_bf$BONA_boreal, name = "BONA", type
   add_trace(y = data_bf$EQAS...44, name = 'EQAS', color = I("gold"), marker = list(color = "gold"))%>%
   add_trace(y = data_bf$AUST...45, name = 'AUST', color = I("gray"), marker = list(color = "gray"))%>%
   add_trace(y = data_bf$Global...46, name = 'Global', color = I("#186600"), marker = list(color = "#186600"))%>%
-  layout(yaxis = list(title = "Boreal forest fires C emissions (TgC/year)"),
+  layout(yaxis = list(title = "Boreal forest fires carbons emissions"),
          xaxis = list(title = ""), showlegend = FALSE)
 
 ###
@@ -122,15 +126,15 @@ fig4 <- plot_ly(data_bf, x = ~year, y = data_bf$BONA_temper, name = "BONA", type
   add_trace(y = data_bf$EQAS...59, name = 'EQAS', color = I("gold"), marker = list(color = "gold"))%>%
   add_trace(y = data_bf$AUST...60, name = 'AUST', color = I("gray"), marker = list(color = "gray"))%>%
   add_trace(y = data_bf$Global...61, name = 'Global', color = I("#186600"), marker = list(color = "#186600"))%>%
-  layout(yaxis = list(title = "Temperate forest fires C emissions (TgC/year)"),
+  layout(yaxis = list(title = "Temperate forest fires carbons emissions"),
          xaxis = list(title = ""), barmode = "group", showlegend = FALSE)
 
 test2 <- subplot(fig3,fig4, margin = 0.05, nrows = 1, titleX = FALSE,
                 titleY = FALSE)
 
 test2%>%layout(annotations = list(
- list(x = 0.03 , y = 1.05, text = "Boreal forest fires C emissions (TgC/year)", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.88 , y = 1.05, text = "Temperate forest fires C emissions (Tg/Cyear)", showarrow = F, xref='paper', yref='paper'))
+ list(x = 0.07 , y = 1.05, text = "Boreal forest fire carbon emissions", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.88 , y = 1.05, text = "Temperate forest fire carbon emissions", showarrow = F, xref='paper', yref='paper'))
 )
 
 ```
@@ -191,8 +195,8 @@ test3 <- subplot(fig5,fig6, margin = 0.05, nrows = 1, titleX = FALSE,
                 titleY = FALSE)
 
 test3%>%layout(annotations = list(
- list(x = 0.03 , y = 1.05, text = "Tropical deforestation and degradation", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.88 , y = 1.05, text = "Peat Fires C emissions (TgC/year)", showarrow = F, xref='paper', yref='paper'))
+ list(x = 0.007 , y = 1.05, text = "Tropical deforestation and degradation fire carbon emissions", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.88 , y = 1.05, text = "Peat fire carbon emissions", showarrow = F, xref='paper', yref='paper'))
 )
 
 ```
