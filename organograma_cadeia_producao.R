@@ -17,6 +17,6 @@ sequenceDiagram;
    Consumidor-xConsumidor: Consumo
    Note right of Consumidor: Fim da cadeia <br/>no âmbito nacional<br/>internacional
    Note right of Agroindústria: Intermediários<br/>e atravessadores<br/>dependentes de combustível fóssil
-   Note right of Propriedade Rural: Início da cadeia<br/>envolvendo pequena e<br/>média propriedade
+   Note right of Propriedade Rural: Início da cadeia<br/>envolvendo grande propriedade
 ")
 

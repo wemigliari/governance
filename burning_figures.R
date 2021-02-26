@@ -15,7 +15,7 @@ par(family= "Arial", cex = 0.5, oma = c(4, 1, 1, 1))
 
 plot(data_bf$year, data_bf$BONA, type = "b", bty = "l", pch = 1, col = "blue",
      main = "BC emissions estimates in 1E9 g BC for the globe, different regions, and different fire types", 
-     xlab = "", 
+     xlab = "Source: Data Fire Base", 
      ylab = "Annual fire C emissions (Tg C year)", cex = 0.5,
      ylim =c(0, 3000))
 
