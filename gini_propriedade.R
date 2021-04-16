@@ -99,5 +99,52 @@ legend("topright", legend = c("Propriedades de 0 a 200 (ha)",
                    bty = "n", x = "top",  ncol = 2,
                    cex = 0.8)
 
+##### Modelo
+
+modelo <- read_excel("/Users/wemigliari/Documents/R/tabelas/gini_propriedade.xlsx",
+                   sheet="Modelo")
+escala <- seq(0,1, 0.05)
+
+library(ineq)
+par(family= "Times", cex = 0.7, oma = c(4, 1, 1, 1))
+
+Lc.m <- Lc(modelo$`Área (ha)`,n=modelo$Unidades)
+plot(Lc.m, col = "black", xlab = "Quantidade de Propriedades", 
+     ylab = "Área das Propriedades (ha)",
+     main = "", 
+     xaxt="n",
+     yaxt="n",
+     ylim = c(0,1))
+axis(side=1,at=escala,labels=escala)
+axis(side=2,at=escala,labels=escala, las=2)
+grid()
+
+
+mx11 <- c(0, 0.5, 0.5, 0.48, 0.23, 0)
+my11 <-c(0, 0, 0.22, 0.2, 0.06, 0)
+
+mx22 <- c(0.5, 1, 1, 0.5)
+my22 <- c(0, 0, 0.99, 0.22)
+
+polygon(mx11, my11, col = "coral", density = 40, border = NA, angle = 60)
+polygon(mx22, my22, col = "gold", density = 40, border = NA, angle = 60)
+
+segments(0, 0.22, x1 = 0.5, y1 = 0.22,
+         col = "purple", lty = 2)
+segments(0.5, 0, x1 = 0.5, y1 = 0.22,
+         col = "purple", lty = 2)
+
+segments(0, 0.1, x1 = 0.3, y1 = 0.1,
+         col = "purple", lty = 2)
+segments(0.3, 0, x1 = 0.3, y1 = 0.1,
+         col = "purple", lty = 2)
+
+legend("topright", legend = c("Propriedades de 5 a 20 (ha)", 
+                              "Propriedades de 20 a 200 (ha)"), 
+       fill = c("coral", "gold"), 
+       density = c(40, 40),
+       angle = c(60, 60),
+       bty = "n", x = "top",  ncol = 2,
+       cex = 0.8)
 
 
