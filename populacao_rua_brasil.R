@@ -11,7 +11,7 @@ library(readxl)
 library(htmlwidgets)
 library(stringr)
 
-populacao_rua <- read_xlsx("/Users/wemigliari/Documents/R/tabelas/populacao_rua_brasil.xlsx") ### Shape in form of sf
+populacao_rua <- read_xlsx("/Users/wemigliari/Documents/R/tabelas/populacao_rua_brasil.xlsx")
 names(populacao_rua)[2] <- "nome"
 names(populacao_rua)[3] <- "date"
 populacao_rua <- data.frame(populacao_rua)
@@ -41,7 +41,7 @@ class(shp_joined) # It is now converted to "sf" and "data.frame". It works!
 
 data <- shp_joined %>%
   arrange(Total) %>%
-  mutate( name=factor(nome, unique(nome)))
+  mutate(name=factor(nome, unique(nome)))
 
 data <- data %>%
   select( date, Total, geometry.x, nome)%>%
@@ -78,7 +78,7 @@ leaflet(data) %>%
   )%>% 
   addTiles()  %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
-  addLegend(pal=mypalette, values=~data$Total, opacity=1, title = "Moradores em Situação de Rua", position = "bottomright" )%>%
+  addLegend(pal=mypalette, values=~data$Total, opacity=1, title = "Estados, Totais de Moradores em Situação de Rua", position = "bottomright" )%>%
   setView(-47.9392, -15.7801, zoom = 4.2)
 
 ####
@@ -86,7 +86,7 @@ leaflet(data) %>%
 qtm(data, fill = "Total", fill.breaks=c(0, 500, 1000, 2000, 5000, 10000, 20000, 50000, 70000),
     fill.title = "Moradores em Situação de Rua",
     fill.palette = "Reds", ## Blues, Reds, Purples etc for different colors. To invert the scale of the colors, use the minus sign, for instance, -Reds.
-    title = "CADÚnico",
+    title = "Fonte: CADÚnico",
     title.position = c("right", "top")) +
   tm_layout(asp=0) + 
   tm_compass (north = 0, type = "arrow", show.labels = 2) +
@@ -151,14 +151,14 @@ leaflet(data1) %>%
   )%>% 
   addTiles()  %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
-  addLegend(pal=mypalette1, values=~data$Total, opacity=1, title = "Moradores em Situação de Rua, MG", position = "bottomright" )%>%
-  setView(-43.940933, -19.912998, zoom = 6.3)
+  addLegend(pal=mypalette1, values=~data$Total, opacity=1, title = "Total de Moradores em Situação de Rua, Municípios de Minas Gerais", position = "bottomright" )%>%
+  setView(-40.940933, -19.912998, zoom = 6.3)
 #####
 
 qtm(data1, fill = "Total", fill.breaks=c(0,10, 20, 30, 40, 50, 100, 200, 500, 1000, 2000, 5000, 8700),
     fill.title = "Moradores em Situação de Rua, Minas Gerais",
     fill.palette = "Reds", ## Blues, Reds, Purples etc for different colors. To invert the scale of the colors, use the minus sign, for instance, -Reds.
-    title = "CADÚnico",
+    title = "Fonte: CADÚnico",
     title.position = c("right", "top")) +
   tm_layout(asp=0) + 
   tm_compass (north = 0, type = "arrow", show.labels = 2) +
