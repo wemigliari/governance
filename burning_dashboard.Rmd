@@ -23,6 +23,7 @@ library(readxl)
 library(highcharter)
 library(plotly)
 
+
 data_bf <- read_excel("/Users/wemigliari/Documents/R/data/burning_fire_emissions_gfd.xlsx",
                       sheet = "Transposed")
 
