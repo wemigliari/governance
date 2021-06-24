@@ -33,58 +33,93 @@ shares2$Low = as.numeric(gsub("[\\$]", "", shares2$Low))
 shares2 %>% 
   mutate_if(is.numeric, round, digits = 2)
 
-library(extrafont)
-library(RColorBrewer)
+####
+
 library(ggplot2)
-
-
-par(family= "Arial", cex = 0.5, oma = c(4, 1, 1, 1), mar= c(5,3,2,2))
-
-
-
-plot(shares2$Price, type = "b", bty = "l", pch = 1, col = "red", las = 1,
-     xlab = "S??rie Hist??rica Junho 2011 - Junho 2021. ??rea sombreada = pre??o em d??lar das a????es da Vale.", 
-     ylab = "Pre??o/Unidade A????o (d??lar)", 
-     panel.first = c(rect(9, -1e6, 11 , 1e6, col='lightgray', border=NA),
-                     rect(21, -1e6, 23 , 1e6, col='lightgray', border=NA),
-                     rect(33, -1e6, 35 , 1e6, col='lightgray', border=NA),
-                     rect(45, -1e6, 47 , 1e6, col='lightgray', border=NA)))
-
-
-#lines(totals$Arrivals/1000000, type = "b", bty = "l", pch=10, col = "gray", cex = 0.5)
-
-lines(shares2$Price, type = "b", bty = "l", pch=3, col = "darkgreen", cex = 0.5)
-
-
-
-legend("topleft", legend = c("Ferro (ton) - Pre??o em D??lar"),
-       col = c("blue"), 
-       pch = c(3),
-       bty = "n", cex = 0.7)
-
-#####
-
-p <- ggplot(shares2, aes(x=Year, y=Price)) +
-  geom_line() + 
-  xlab("")
-p
-
-
 library(hrbrthemes)
 
+####Graph 1
 p <- ggplot(shares2, aes(x=Year, y=Price)) +
-  geom_line(color="#ffa500") + 
+  geom_line(color="#ffa500", size = 0.3) + 
   annotate("rect", xmin = as.Date("2015-01-01"), xmax = as.Date("2021-06-21"), ymin = 0, ymax = 35,
            alpha = .2) +
   xlab("") +
   theme_ipsum() +
   theme(plot.caption = element_text(size = 10)) +
-  labs(title="Vale S/A. A????es Negociadas na Bolsa de Valores de Nova Iorque ",
-       y = "Unidade (US$)", caption = "Fonte: Nasdaq. Elaborado por Migliari, W. (2021).")
-
+  labs(title="Gr??fico 1. Pre??o das A????es da Vale S/A na Bolsa de Valores de Nova Iorque ",
+       y = "Unidade (US$)", caption = "Fonte: Nasdaq. Elaborado por Migliari, W. (2021).") +
+  annotate(geom="text", x=as.Date("2015-11-05"), y=18, label="Rompimento da Barragem do Fund??o, Mariana", 
+           angle = 90,
+           size=2,
+           color = "#3E3E3E") +
+  annotate(geom="text", x=as.Date("2018-12-20"), y=17, label="Rompimento da Barragem da Mina C??rrego do Feij??o, Brumadinho", 
+           angle = 90,
+           size=2,
+           color = "#3E3E3E")+
+  geom_vline(xintercept=as.Date("2015-12-05"), linetype="dotted", color = "red")+
+  geom_vline(xintercept=as.Date("2019-01-20"), linetype="dotted", color = "red")
 p
 
-#####
+#####Graph2
+
+colors <- c("Valor Final" = "red", "Maior Valor" = "gold", "Menor Valor" = "#ffa500")
+
+
+p2 <- ggplot(shares2, aes(x=Year)) +
+  geom_line(aes(y = Price, color = "Valor Final"), size = 1, linetype = "dotted") + 
+  geom_line(aes(y = High, color = "Maior Valor"), size = 1, linetype = "dotted") +
+  geom_line(aes(y = Low, color ="Menor Valor"), size = 1, linetype = "dotted") +
+  xlab("") +
+  theme_ipsum() +
+  theme(plot.caption = element_text(size = 10)) +
+  labs(title="Gr??fico 2. Varia????o do Valor das A????es da Vale S/A na Bolsa de Nova Iorque",
+       y = "Varia????o das A????es (US$)", caption = "Fonte: Nasdaq. Elaborado por Migliari, W. (2021).",
+       color = "") +
+  scale_color_manual(values = colors) +
+  annotate(geom="text", x=as.Date("2015-11-05"), y=20, label="Rompimento da Barragem do Fund??o, Mariana", 
+           angle = 90,
+           size=2,
+           color = "#3E3E3E") +
+  annotate(geom="text", x=as.Date("2018-12-20"), y=25, label="Rompimento da Barragem da Mina C??rrego do Feij??o, Brumadinho", 
+           angle = 90,
+           size=2,
+           color = "#3E3E3E") +
+  geom_vline(xintercept=as.Date("2015-12-05"), linetype="dotted", color = "red") +
+  geom_vline(xintercept=as.Date("2019-01-20"), linetype="dotted", color = "red") +
+  geom_segment(aes(x=as.Date("2015-11-05"), y=3, xend=as.Date("2021-06-20"), yend=21), color = "darkgray",
+               linetype="dashed", size = 0.5)
+p2
+
+#####Graph2
+
+library(ggtext)
+
+p3 <- ggplot(shares2, aes(x=Year, y= Volume/1000000)) +
+  geom_line(color="red") + 
+
+  annotate("rect", xmin = as.Date("2015-01-01"), xmax = as.Date("2021-06-21"), ymin = 0, ymax = 150,
+           alpha = .2) +
+  xlab("") +
+  theme_ipsum() +
+  theme(plot.caption = element_text(size = 10)) +
+  labs(title="Gr??fico 3. Volume das A????es Negociadas da Vale S/A na Bolsa de Valores de Nova Iorque ",
+       y = "Quantidade de A????es (unidades em milh??es)", caption = "Fonte: Nasdaq. Elaborado por Migliari, W. (2021).") +
+  annotate(geom="text", x=as.Date("2015-11-05"), y=100, label="Rompimento da Barragem do Fund??o, Mariana", 
+           angle = 90,
+           size=2,
+           color = "#3E3E3E") +
+  annotate(geom="text", x=as.Date("2018-12-20"), y=105, label="Rompimento da Barragem da Mina C??rrego do Feij??o, Brumadinho", 
+           angle = 90,
+           size=2,
+           color = "#3E3E3E")+
+  geom_vline(xintercept=as.Date("2015-12-05"), linetype="dotted", color = "red")+
+  geom_vline(xintercept=as.Date("2019-01-20"), linetype="dotted", color = "red")
+  
+
+p3
+
+
+#####Graph4
 
 library("writexl")
 write_xlsx(shares2, "/Users/wemigliari/Documents/R/Tabelas/vale_shares.xlsx")
