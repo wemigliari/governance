@@ -73,6 +73,30 @@ rua_correl %>%
   kable_paper("hover", full_width = F)
 
 
+#### Cronbach's Alpha/data consistency
+
+rua_region <- read_xlsx("/Users/wemigliari/Documents/R/tabelas/brasil_popula_rua.xlsx",
+                        sheet = "Region")
+rua_region <- rua_region[,-c(1)]
+
+library(psych)
+
+alpha(rua_region)
+
+#### or regression (simple/multiple linear regression)
+
+test3 <- lm(rua_region$SUDESTE ~ rua_region$BRASIL)
+summary(test3)
+
+test4 <- lm(rua_region$SUDESTE ~ rua_region$NORTE + rua_region$NORDESTE +
+              rua_region$SUL + rua_region$`CENTRO-OESTE`)
+summary(test4)
+
+
+
+
+
+
 
 
 
