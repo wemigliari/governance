@@ -3,6 +3,8 @@ library(varhandle)
 library(yarrr)
 library(XLConnect)
 
+## Load library XLConnect for the function loadWorkbook
+
 mysheets <- loadWorkbook("/Users/wemigliari/Documents/R/tabelas/tour_gov_health_spain.xlsx")
 
 nordic_countries = readWorksheet(mysheets, sheet = "Nordic Countries")
